@@ -1,0 +1,42 @@
+package com.EmployeeDirectory.EmployeeManagement.Controller;
+
+import com.EmployeeDirectory.EmployeeManagement.Service.EmployeeService;
+import com.EmployeeDirectory.EmployeeManagement.model.EmployeeSchema;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class Employee {
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @GetMapping("/employees")
+    public List<EmployeeSchema> getAllEmployee()
+    {
+        return employeeService.getAllEmployees();
+    }
+
+    @PostMapping("/employees")
+    public void addEmployees(@RequestBody EmployeeSchema employeeSchema)
+    {
+        employeeService.addEmployees(employeeSchema);
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public void deleteEmployeeById(@PathVariable int id)
+    {
+        employeeService.deleteEmployeeById(id);
+    }
+
+    @PutMapping("employees/{id}")
+    public void updateEmployees(@RequestBody EmployeeSchema newemployeeSchema,@PathVariable int id)
+    {
+    employeeService.updateEmployeeById(newemployeeSchema,id);
+    }
+
+
+
+}
