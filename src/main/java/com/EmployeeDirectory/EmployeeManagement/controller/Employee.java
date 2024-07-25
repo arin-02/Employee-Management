@@ -1,6 +1,6 @@
-package com.EmployeeDirectory.EmployeeManagement.Controller;
+package com.EmployeeDirectory.EmployeeManagement.controller;
 
-import com.EmployeeDirectory.EmployeeManagement.Service.EmployeeService;
+import com.EmployeeDirectory.EmployeeManagement.service.EmployeeService;
 import com.EmployeeDirectory.EmployeeManagement.model.EmployeeSchema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,7 @@ public class Employee {
         employeeService.deleteEmployeeById(id);
     }
 
-    @PutMapping("employees/{id}")
+    @PutMapping("/employees/{id}")
     public void updateEmployees(@RequestBody EmployeeSchema newemployeeSchema,@PathVariable int id)
     {
     employeeService.updateEmployeeById(newemployeeSchema,id);

@@ -1,15 +1,15 @@
-package com.EmployeeDirectory.EmployeeManagement.Service;
+package com.EmployeeDirectory.EmployeeManagement.service.serviceImpl;
 
-import com.EmployeeDirectory.EmployeeManagement.Repository.EmployeeRepo;
 import com.EmployeeDirectory.EmployeeManagement.model.EmployeeSchema;
+import com.EmployeeDirectory.EmployeeManagement.repository.EmployeeRepo;
+import com.EmployeeDirectory.EmployeeManagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EmployeeService {
-
+public class EmplooyeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepo employeeRepo;
 
@@ -36,5 +36,4 @@ public class EmployeeService {
             employeeRepo.save(newempSchema);
         }
     }
-
 }

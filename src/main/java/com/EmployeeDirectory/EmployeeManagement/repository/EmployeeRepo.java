@@ -1,4 +1,4 @@
-package com.EmployeeDirectory.EmployeeManagement.Repository;
+package com.EmployeeDirectory.EmployeeManagement.repository;
 
 import com.EmployeeDirectory.EmployeeManagement.model.EmployeeSchema;
 import org.springframework.data.repository.CrudRepository;
