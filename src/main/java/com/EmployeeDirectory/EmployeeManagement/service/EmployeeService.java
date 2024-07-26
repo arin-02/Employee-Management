@@ -18,4 +18,7 @@ public interface EmployeeService {
 
      void updateEmployeeById(EmployeeSchema newempSchema,int id);
 
+     List<EmployeeSchema> getEmployeesByDepartment(String department);
+
+     List<EmployeeSchema> getEmployeesByPosition(String position);
 }

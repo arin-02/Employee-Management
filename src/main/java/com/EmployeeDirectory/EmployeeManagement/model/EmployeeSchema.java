@@ -1,9 +1,17 @@
 package com.EmployeeDirectory.EmployeeManagement.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "Employee_Table")
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class EmployeeSchema {
 
     @Id
@@ -13,8 +21,8 @@ public class EmployeeSchema {
 
     private String name;
     private String position;
-    private String Department;
-    private String Contact_Details;
+    private String department;
+    private String contact_Details;
 
     public EmployeeSchema() {
     }
@@ -23,8 +31,8 @@ public class EmployeeSchema {
         this.empId = empId;
         this.name = name;
         this.position = position;
-        Department = department;
-        Contact_Details = contact_Details;
+        this.department = department;
+        this.contact_Details = contact_Details;
     }
 
     public int getEmpId() {
@@ -52,19 +60,19 @@ public class EmployeeSchema {
     }
 
     public String getContact_Details() {
-        return Contact_Details;
+        return contact_Details;
     }
 
     public void setContact_Details(String contact_Details) {
-        Contact_Details = contact_Details;
+        this.contact_Details = contact_Details;
     }
 
     public String getDepartment() {
-        return Department;
+        return department;
     }
 
     public void setDepartment(String department) {
-        Department = department;
+        this.department = department;
     }
 
     @Override
@@ -73,8 +81,8 @@ public class EmployeeSchema {
                 "empId=" + empId +
                 ", name='" + name + '\'' +
                 ", position='" + position + '\'' +
-                ", Department='" + Department + '\'' +
-                ", Contact_Details='" + Contact_Details + '\'' +
+                ", Department='" + department + '\'' +
+                ", Contact_Details='" + contact_Details + '\'' +
                 '}';
     }
 }

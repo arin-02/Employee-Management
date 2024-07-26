@@ -37,6 +37,17 @@ public class Employee {
     employeeService.updateEmployeeById(newemployeeSchema,id);
     }
 
+    @GetMapping("/filter/department/{department}")
+    public List<EmployeeSchema> getEmployeesByDepartment(@PathVariable String department) {
+        return employeeService.getEmployeesByDepartment(department);
+    }
+
+    @GetMapping("/filter/position/{position}")
+    public List<EmployeeSchema> getEmployeesByPosition(@PathVariable String position) {
+        return employeeService.getEmployeesByPosition(position);
+    }
+
+
 
 
 }
