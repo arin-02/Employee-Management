@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(Employee.class) // Focus on the EmployeeController
+@WebMvcTest(Employee.class)
 public class EmployeeTest {
 
     @Autowired
@@ -39,16 +39,14 @@ public class EmployeeTest {
 
     @BeforeEach
     public void setUp() {
-        employeeSchema = new EmployeeSchema(12, "arin_singh", "Developer", "ITYTL", "ar@gmail.com");
+        employeeSchema = new EmployeeSchema(12, "arin_singh", "Developer", "IT_ytl", "ar@gmail.com");
         employeeList = List.of(employeeSchema);
     }
 
     @Test
     public void testGetAllEmployees() throws Exception {
-        // Arrange
         when(employeeService.getAllEmployees()).thenReturn(employeeList);
 
-        // Act & Assert
         mockMvc.perform(get("/employees")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -62,10 +60,8 @@ public class EmployeeTest {
 
     @Test
     public void testAddEmployee() throws Exception {
-        // Arrange
         doNothing().when(employeeService).addEmployees(any(EmployeeSchema.class));
 
-        // Act & Assert
         mockMvc.perform(post("/employees")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(employeeSchema)))
@@ -76,10 +72,8 @@ public class EmployeeTest {
 
     @Test
     public void testDeleteEmployeeById() throws Exception {
-        // Arrange
         doNothing().when(employeeService).deleteEmployeeById(anyInt());
 
-        // Act & Assert
         mockMvc.perform(delete("/employees/{id}", 12)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -89,10 +83,8 @@ public class EmployeeTest {
 
     @Test
     public void testUpdateEmployee() throws Exception {
-        // Arrange
         doNothing().when(employeeService).updateEmployeeById(any(EmployeeSchema.class), anyInt());
 
-        // Act & Assert
         mockMvc.perform(put("/employees/{id}", 12)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(employeeSchema)))
@@ -103,10 +95,8 @@ public class EmployeeTest {
 
     @Test
     public void testGetEmployeesByDepartment() throws Exception {
-        // Arrange
         when(employeeService.getEmployeesByDepartment(any(String.class))).thenReturn(employeeList);
 
-        // Act & Assert
         mockMvc.perform(get("/filter/department/{department}", "ITYTL")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

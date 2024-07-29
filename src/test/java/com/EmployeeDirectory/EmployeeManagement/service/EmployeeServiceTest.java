@@ -54,36 +54,28 @@ public class EmployeeServiceTest {
 
     @Test
     public void testAddEmployee() {
-        // Arrange
         EmployeeSchema newEmployee = new EmployeeSchema(100, "newbie", "newpos", "dept", "newbie@gmail.com");
 
-        // Act
         employeeService.addEmployees(newEmployee);
 
-        // Assert
         verify(employeeDao).saveData(newEmployee);
     }
 
     @Test
     public void testDeleteEmployeeById_Success() {
-        // Arrange
         int idToDelete = 3;
         when(employeeDao.existsById(idToDelete)).thenReturn(true);
 
-        // Act
         employeeService.deleteEmployeeById(idToDelete);
 
-        // Assert
         verify(employeeDao).deleteById(idToDelete);
     }
 
     @Test
     public void testDeleteEmployeeById_NotFound() {
-        // Arrange
         int idToDelete = 999;
         when(employeeDao.existsById(idToDelete)).thenReturn(false);
 
-        // Act & Assert
         Exception exception = assertThrows(EmployeeNotFoundException.class, () -> {
             employeeService.deleteEmployeeById(idToDelete);
         });
@@ -92,15 +84,12 @@ public class EmployeeServiceTest {
 
     @Test
     public void testUpdateEmployeeById_Success() {
-        // Arrange
         EmployeeSchema updatedEmployee = new EmployeeSchema(3, "updated", "updatedpos", "updateddept", "updated@gmail.com");
         int idToUpdate = 3;
         when(employeeDao.existsById(idToUpdate)).thenReturn(true);
 
-        // Act
         employeeService.updateEmployeeById(updatedEmployee, idToUpdate);
 
-        // Assert
         verify(employeeDao).save(updatedEmployee);
     }
 
@@ -120,27 +109,21 @@ public class EmployeeServiceTest {
 
     @Test
     public void testGetEmployeesByDepartment() {
-        // Arrange
         String department = "dept";
         when(employeeDao.findByDepartment(department)).thenReturn(employeeList);
 
-        // Act
         List<EmployeeSchema> employees = employeeService.getEmployeesByDepartment(department);
 
-        // Assert
         assertEquals(employeeList, employees);
     }
 
     @Test
     public void testGetEmployeesByPosition() {
-        // Arrange
         String position = "newpos";
         when(employeeDao.findByPositionCustom(position)).thenReturn(employeeList);
 
-        // Act
         List<EmployeeSchema> employees = employeeService.getEmployeesByPosition(position);
 
-        // Assert
         assertEquals(employeeList, employees);
     }
 
