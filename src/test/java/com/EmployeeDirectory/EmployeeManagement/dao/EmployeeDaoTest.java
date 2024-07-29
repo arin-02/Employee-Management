@@ -1,6 +1,7 @@
 package com.EmployeeDirectory.EmployeeManagement.dao;
 
 import com.EmployeeDirectory.EmployeeManagement.dao.daoImpl.EmployeeDaoImpl;
+import com.EmployeeDirectory.EmployeeManagement.exception.EmployeeNotFoundException;
 import com.EmployeeDirectory.EmployeeManagement.model.EmployeeSchema;
 import com.EmployeeDirectory.EmployeeManagement.repository.EmployeeRepo;
 import org.junit.jupiter.api.Assertions;
@@ -59,6 +60,75 @@ public class EmployeeDaoTest {
         Assertions.assertEquals(employee.getPosition(), savedEmployee.getPosition()); // Verify the saved employee's position
         Assertions.assertEquals(employee.getDepartment(), savedEmployee.getDepartment()); // Verify the saved employee's department
         Assertions.assertEquals(employee.getContact_Details(), savedEmployee.getContact_Details()); // Verify the saved employee's contact details
+    }
+
+    @Test
+    public void testFindAll() {
+        when(employeeRepo.findAll()).thenReturn(employeeList);
+
+        List<EmployeeSchema> employees = employeeDao.findAll();
+
+        Assertions.assertNotNull(employees);
+        Assertions.assertEquals(2, employees.size());
+        Assertions.assertEquals(employeeList.get(0), employees.get(0));
+        Assertions.assertEquals(employeeList.get(1), employees.get(1));
+    }
+
+    @Test
+    public void testExistsById() {
+        when(employeeRepo.existsById(anyInt())).thenReturn(true);
+
+        boolean exists = employeeDao.existsById(1);
+
+        Assertions.assertTrue(exists);
+    }
+
+    @Test
+    public void testDeleteByIdWhenEmployeeExists() {
+        when(employeeRepo.existsById(anyInt())).thenReturn(true);
+
+        employeeDao.deleteById(1);
+
+        verify(employeeRepo, times(1)).deleteById(1);
+    }
+
+    @Test
+    public void testDeleteByIdWhenEmployeeDoesNotExist() {
+        when(employeeRepo.existsById(anyInt())).thenReturn(false);
+
+        Assertions.assertThrows(EmployeeNotFoundException.class, () -> {
+            employeeDao.deleteById(1);
+        });
+    }
+
+    @Test
+    public void testSave() {
+        EmployeeSchema employee = employeeList.get(0);
+        when(employeeRepo.save(any(EmployeeSchema.class))).thenReturn(employee);
+
+        employeeDao.save(employee);
+
+        verify(employeeRepo, times(1)).save(employee);
+    }
+
+    @Test
+    public void testFindByDepartment() {
+        when(employeeRepo.findByDepartment(anyString())).thenReturn(employeeList);
+
+        List<EmployeeSchema> employees = employeeDao.findByDepartment("dept");
+
+        assertNotNull(employees);
+        Assertions.assertEquals(2, employees.size());
+    }
+
+    @Test
+    public void testFindByPositionCustom() {
+        when(employeeRepo.findByPositionCustom(anyString())).thenReturn(employeeList);
+
+        List<EmployeeSchema> employees = employeeDao.findByPositionCustom("newpos");
+
+        assertNotNull(employees);
+        Assertions.assertEquals(2, employees.size());
     }
 }
 
