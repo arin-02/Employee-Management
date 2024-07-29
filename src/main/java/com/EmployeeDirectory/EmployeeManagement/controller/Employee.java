@@ -47,7 +47,4 @@ public class Employee {
         return employeeService.getEmployeesByPosition(position);
     }
 
-
-
-
 }
