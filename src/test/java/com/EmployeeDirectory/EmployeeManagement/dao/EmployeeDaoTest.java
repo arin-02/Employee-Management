@@ -117,7 +117,7 @@ public class EmployeeDaoTest {
 
         List<EmployeeSchema> employees = employeeDao.findByDepartment("dept");
 
-        assertNotNull(employees);
+        Assertions.assertNotNull(employees);
         Assertions.assertEquals(2, employees.size());
     }
 
@@ -127,7 +127,7 @@ public class EmployeeDaoTest {
 
         List<EmployeeSchema> employees = employeeDao.findByPositionCustom("newpos");
 
-        assertNotNull(employees);
+        Assertions.assertNotNull(employees);
         Assertions.assertEquals(2, employees.size());
     }
 }
