@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Setter
 @Getter
 @Entity
@@ -35,6 +37,8 @@ public class EmployeeSchema {
         this.department = department;
         this.contact_Details = contact_Details;
     }
+
+
 
     @Override
     public String toString() {

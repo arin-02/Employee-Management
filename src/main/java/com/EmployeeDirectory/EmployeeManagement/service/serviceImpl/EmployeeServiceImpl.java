@@ -3,7 +3,6 @@ package com.EmployeeDirectory.EmployeeManagement.service.serviceImpl;
 import com.EmployeeDirectory.EmployeeManagement.dao.EmployeeDao;
 import com.EmployeeDirectory.EmployeeManagement.exception.EmployeeNotFoundException;
 import com.EmployeeDirectory.EmployeeManagement.model.EmployeeSchema;
-import com.EmployeeDirectory.EmployeeManagement.repository.EmployeeRepo;
 import com.EmployeeDirectory.EmployeeManagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EmplooyeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeDao employeeDao;

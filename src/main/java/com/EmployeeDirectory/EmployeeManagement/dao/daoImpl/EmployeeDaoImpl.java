@@ -6,55 +6,20 @@ import com.EmployeeDirectory.EmployeeManagement.model.EmployeeSchema;
 import com.EmployeeDirectory.EmployeeManagement.repository.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class EmployeeDaoImpl implements EmployeeDao {
+
+
+    public EmployeeDaoImpl(EmployeeRepo employeeRepo) {
+        this.employeeRepo = employeeRepo;
+    }
 
     @Autowired
     public EmployeeRepo employeeRepo;
-
-    public List<EmployeeSchema> getAllEmployees()
-    {
-        List<EmployeeSchema> emps=(List<EmployeeSchema>) employeeRepo.findAll();
-        return emps;
-    }
-
-    public void addEmployees(EmployeeSchema employeeSchema)
-    {
-        employeeRepo.save(employeeSchema);
-    }
-
-    public void deleteEmployeeById(int id)
-    {
-        if (!employeeRepo.existsById(id)) {
-            throw new EmployeeNotFoundException("Employee with ID " + id + " not found");
-        }
-        employeeRepo.deleteById(id);
-    }
-
-    public void updateEmployeeById(EmployeeSchema newempSchema,int id)
-    {
-        if (!employeeRepo.existsById(id)) {
-            throw new EmployeeNotFoundException("Employee with ID " + id + " not found");
-        }
-//        if(id==newempSchema.getEmpId())
-//        {
-//            employeeRepo.save(newempSchema);
-//        }
-        newempSchema.setEmpId(id);
-        employeeRepo.save(newempSchema);
-    }
-//    @Override
-//    public List<EmployeeSchema> getEmployeesByDepartment(String department) {
-//        return employeeRepo.findByDepartment(department);
-//    }
-//
-//    @Override
-//    public List<EmployeeSchema> getEmployeesByPosition(String position) {
-//        return employeeRepo.findByPositionCustom(position);
-//    }
 
     @Override
     public EmployeeSchema saveData(EmployeeSchema employeeSchema) {
