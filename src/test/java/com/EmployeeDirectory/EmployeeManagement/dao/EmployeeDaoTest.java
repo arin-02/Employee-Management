@@ -25,7 +25,7 @@ import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 public class EmployeeDaoTest {
 
     @Autowired
-    private EmployeeDao employeeDao; // Assuming EmployeeDaoImpl is your DAO implementation
+    private EmployeeDao employeeDao;
 
     @MockBean
     private EmployeeRepo employeeRepo;
