@@ -42,13 +42,13 @@ public class EmployeeServiceTest {
     @Test
     public void testGetAllEmployees()
     {
-        // Arrange
+
         when(employeeDao.findAll()).thenReturn(employeeList);
 
-        // Act
+
         List<EmployeeSchema> employees = employeeService.getAllEmployees();
 
-        // Assert
+
         assertEquals(employeeList, employees);
     }
 

@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface EmployeeDao {
 
-
     EmployeeSchema saveData(EmployeeSchema employeeSchema);
 
     List<EmployeeSchema> findAll();

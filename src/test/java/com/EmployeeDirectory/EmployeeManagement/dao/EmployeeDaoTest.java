@@ -38,28 +38,28 @@ public class EmployeeDaoTest {
 
         MockitoAnnotations.openMocks(this);
         employeeList = List.of(
-                new EmployeeSchema(3, "lucky", "newpos", "dept", "aaaa@gmail.com"),
-                new EmployeeSchema(324, "arin2", "ytlpos", "acqdept", "a@gmail.com")
+                new EmployeeSchema(3, "lucky", "new_pos", "dept", "aaaa@gmail.com"),
+                new EmployeeSchema(324, "arin2", "ytl_pos", "acq_dept", "a@gmail.com")
         );
     }
 
 
     @Test
     public void testSaveData() {
-        // Arrange
+
         EmployeeSchema employee = employeeList.get(0);
         when(employeeRepo.save(any(EmployeeSchema.class))).thenReturn(employee);
 
-        // Act
+
         EmployeeSchema savedEmployee = employeeDao.saveData(employee);
 
-        // Assert
-        Assertions.assertNotNull(savedEmployee); // Check that the returned object is not null
-        Assertions.assertEquals(employee.getEmpId(), savedEmployee.getEmpId()); // Verify that the saved employee's ID matches
-        Assertions.assertEquals(employee.getName(), savedEmployee.getName()); // Verify the saved employee's name
-        Assertions.assertEquals(employee.getPosition(), savedEmployee.getPosition()); // Verify the saved employee's position
-        Assertions.assertEquals(employee.getDepartment(), savedEmployee.getDepartment()); // Verify the saved employee's department
-        Assertions.assertEquals(employee.getContact_Details(), savedEmployee.getContact_Details()); // Verify the saved employee's contact details
+
+        Assertions.assertNotNull(savedEmployee);
+        Assertions.assertEquals(employee.getEmpId(), savedEmployee.getEmpId());
+        Assertions.assertEquals(employee.getName(), savedEmployee.getName());
+        Assertions.assertEquals(employee.getPosition(), savedEmployee.getPosition());
+        Assertions.assertEquals(employee.getDepartment(), savedEmployee.getDepartment());
+        Assertions.assertEquals(employee.getContact_Details(), savedEmployee.getContact_Details());
     }
 
     @Test
